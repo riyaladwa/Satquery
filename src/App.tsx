@@ -1625,65 +1625,65 @@ function App() {
           ))}
         </div>
 
-        <section hidden={activeSection !== 'overview'} className="mb-6 rounded-2xl border border-teal-500/20 bg-slate-900/90 p-5 shadow-glow">
+        <section hidden={activeSection !== 'overview'} className="mb-6 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-yellow-50 p-5 shadow-glow ring-1 ring-amber-100">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="mb-1 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-teal-300 font-semibold"><MapPinned size={15} /> {currentLabels.landingPill || 'AI Nearby Issue Detection'}</div>
-              <h2 className="text-xl font-bold text-white">{currentLabels.landingTitle || 'Analyze your selected area using satellite imagery and AI.'}</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">{currentLabels.landingDesc || 'SatQuery checks for potential environmental, infrastructure, urban, agriculture, and disaster-related changes. Results are situational awareness, not confirmed hazards.'}</p>
+              <div className="mb-1 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-700 font-semibold"><MapPinned size={15} /> {currentLabels.landingPill || 'AI Nearby Issue Detection'}</div>
+              <h2 className="text-xl font-bold text-slate-900">{currentLabels.landingTitle || 'Analyze your selected area using satellite imagery and AI.'}</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{currentLabels.landingDesc || 'SatQuery checks for potential environmental, infrastructure, urban, agriculture, and disaster-related changes. Results are situational awareness, not confirmed hazards.'}</p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={openNearbyAnalysis} className="flex items-center gap-2 rounded-xl bg-teal-400 px-4 py-3 font-semibold text-slate-950 shadow-lg shadow-teal-400/20 hover:bg-teal-300"><LocateFixed size={18} /> Analyze My Area</button>
-              <button type="button" onClick={() => goToSection('proximity')} className="rounded-xl border border-teal-400/40 px-4 py-3 text-sm font-medium text-teal-200 hover:bg-teal-400/10">Open Proximity Analysis</button>
+              <button type="button" onClick={openNearbyAnalysis} className="flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-3 font-semibold text-white shadow-lg shadow-amber-500/20 hover:bg-amber-600"><LocateFixed size={18} /> Analyze My Area</button>
+              <button type="button" onClick={() => goToSection('proximity')} className="rounded-xl border border-amber-400/40 px-4 py-3 text-sm font-medium text-amber-700 hover:bg-amber-400/10">Open Proximity Analysis</button>
             </div>
           </div>
         </section>
 
-        <section hidden={activeSection !== 'proximity'} id="proximity" className="mb-6 scroll-mt-24 rounded-2xl border border-teal-500/30 bg-teal-500/10 p-5">
+        <section hidden={activeSection !== 'proximity'} id="proximity" className="mb-6 scroll-mt-24 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50/60 via-white to-yellow-50/60 p-5">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-teal-300 font-bold"><MapPinned size={15} /> Proximity Analysis</div>
-              <h2 className="mt-2 text-xl font-bold text-white">Proximity &amp; Nearby Feature Analysis</h2>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-700 font-bold"><MapPinned size={15} /> Proximity Analysis</div>
+              <h2 className="mt-2 text-xl font-bold text-slate-900">Proximity &amp; Nearby Feature Analysis</h2>
             </div>
-            <button type="button" onClick={() => void runNearbyAnalysis()} className="rounded-xl bg-teal-500 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-400">Refresh features</button>
+            <button type="button" onClick={() => void runNearbyAnalysis()} className="rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600">Refresh features</button>
           </div>
 
-          <div className="rounded-xl border border-slate-700/60 bg-slate-950/70 p-4">
+          <div className="rounded-xl border border-amber-200/70 bg-white p-4 shadow-sm">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <div className="text-sm font-semibold text-teal-200">Nearby feature search</div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-slate-300">Current location</div>
+              <div className="text-sm font-bold text-amber-900">Nearby feature search</div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-slate-500 font-semibold">Current location</div>
             </div>
-            <input value={proximityQuery} onChange={(event) => setProximityQuery(event.target.value)} placeholder="What important features or issues are near this location?" className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500" />
+            <input value={proximityQuery} onChange={(event) => setProximityQuery(event.target.value)} placeholder="What important features or issues are near this location?" className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 placeholder:text-slate-400" />
             <div className="mt-3 flex flex-wrap gap-2">
               {['What important features or issues are near this location?', 'Find all major roads within 2 km of this location.', 'Show nearby hospitals and water features.', 'List hazards and built-up areas near me.'].map((question) => (
-                <button key={question} type="button" onClick={() => setProximityQuery(question)} className="rounded-full border border-slate-700 px-2 py-1 text-[10px] text-slate-300 hover:border-teal-400">{question}</button>
+                <button key={question} type="button" onClick={() => setProximityQuery(question)} className="rounded-full border border-slate-300 px-2 py-1 text-[10px] text-slate-700 hover:border-amber-400 font-medium">{question}</button>
               ))}
             </div>
             <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
               {proximityFeatures.length ? proximityFeatures.map((feature) => (
-                <div key={feature.id} className="rounded-xl border border-slate-800 bg-slate-900/80 p-3 shadow-md">
+                <div key={feature.id} className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-sm font-semibold text-white">{feature.label}</div>
-                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${feature.priority === 'HIGH' ? 'bg-red-500/20 text-red-300 border border-red-500/40' : feature.priority === 'MEDIUM' ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>{feature.priority}</span>
+                    <div className="text-sm font-bold text-slate-900">{feature.label}</div>
+                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${feature.priority === 'HIGH' ? 'bg-red-100 text-red-800 border border-red-300' : feature.priority === 'MEDIUM' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'}`}>{feature.priority}</span>
                   </div>
-                  <div className="mt-2 text-xl font-bold text-teal-300">{feature.distanceMeters} m</div>
-                  <div className="mt-1 text-[11px] leading-5 text-slate-200">{feature.detail}</div>
+                  <div className="mt-2 text-xl font-extrabold text-amber-700">{feature.distanceMeters} m</div>
+                  <div className="mt-1 text-[11px] leading-5 text-slate-600 font-medium">{feature.detail}</div>
                 </div>
-              )) : <div className="col-span-full rounded-xl border border-dashed border-slate-700 p-4 text-xs text-slate-400">No proximity features were calculated for this location yet. Click the refresh button or allow location access to generate nearby detail.</div>}
+              )) : <div className="col-span-full rounded-xl border border-dashed border-slate-300 p-4 text-xs text-slate-500">No proximity features were calculated for this location yet. Click the refresh button or allow location access to generate nearby detail.</div>}
             </div>
-            <div className="mt-3 text-xs text-slate-400">Example: Hospital → 1.2 km; Main road → 350 m; Lake → 800 m; Built-up area → 150 m; Detected hazard → 420 m.</div>
+            <div className="mt-3 text-xs text-slate-500 font-medium">Example: Hospital → 1.2 km; Main road → 350 m; Lake → 800 m; Built-up area → 150 m; Detected hazard → 420 m.</div>
           </div>
         </section>
 
 
-        <section hidden={activeSection !== 'overview'} className="mb-6 rounded-2xl border border-teal-500/20 bg-slate-900/90 p-5 shadow-glow">
+        <section hidden={activeSection !== 'overview'} className="mb-6 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-yellow-50 p-5 shadow-glow ring-1 ring-amber-100">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="mb-1 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-teal-300 font-semibold">🌦️ Climate &amp; Early Warning</div>
-              <h2 className="text-xl font-bold text-white">Understand conditions, trends, forecasts, and potential risks for your selected area.</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">Weather values come from the configured provider. Unsupported indices and warnings remain unavailable.</p>
+              <div className="mb-1 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-700 font-semibold">🌦️ Climate &amp; Early Warning</div>
+              <h2 className="text-xl font-bold text-slate-900">Understand conditions, trends, forecasts, and potential risks for your selected area.</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Weather values come from the configured provider. Unsupported indices and warnings remain unavailable.</p>
             </div>
-            <div className="flex flex-wrap gap-2"><button type="button" onClick={() => { setClimateView('overview'); void runClimateAnalysis() }} className="rounded-xl bg-teal-400 px-4 py-3 text-sm font-semibold text-slate-950 hover:bg-teal-300">Analyze Climate</button><button type="button" onClick={() => openClimateView('forecast')} className="rounded-xl border border-teal-400/40 px-3 py-2 text-xs text-teal-200">View Forecast</button><button type="button" onClick={() => openClimateView('warning')} className="rounded-xl border border-slate-700 px-3 py-2 text-xs text-slate-300">Early Warning</button><button type="button" onClick={() => openClimateView('history')} className="rounded-xl border border-slate-700 px-3 py-2 text-xs text-slate-300">Historical Trends</button></div>
+            <div className="flex flex-wrap gap-2"><button type="button" onClick={() => { setClimateView('overview'); void runClimateAnalysis() }} className="rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white hover:bg-amber-600">Analyze Climate</button><button type="button" onClick={() => openClimateView('forecast')} className="rounded-xl border border-amber-400/40 px-3 py-2 text-xs text-amber-700 hover:bg-amber-400/10">View Forecast</button><button type="button" onClick={() => openClimateView('warning')} className="rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-700 hover:bg-slate-100">Early Warning</button><button type="button" onClick={() => openClimateView('history')} className="rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-700 hover:bg-slate-100">Historical Trends</button></div>
           </div>
         </section>
 
@@ -1691,9 +1691,9 @@ function App() {
           <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
             <div className="flex flex-wrap items-start justify-between gap-4"><div><div className="text-lg font-semibold text-white">🌦️ Climate &amp; Early Warning Intelligence</div><p className="mt-1 text-xs text-slate-400">Specific AOI: {safeLocation ? `${safeLocation.lat.toFixed(5)}, ${safeLocation.lng.toFixed(5)}` : 'No location selected'} · View: {climateView}</p></div><div className="flex items-center gap-2"><select value={climateAoiMode} onChange={(event) => setClimateAoiMode(event.target.value as 'uploaded' | 'manual')} className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-xs text-slate-300"><option value="manual">Manual AOI</option><option value="uploaded">Uploaded image AOI</option></select><button type="button" onClick={() => { setClimateView('overview'); void runClimateAnalysis() }} className="rounded-lg bg-teal-400 px-3 py-2 text-xs font-semibold text-slate-950">Analyze Climate</button></div></div>
             {climateLoading && <div className="mt-4 rounded-xl border border-teal-400/20 bg-teal-400/10 p-3 text-sm text-teal-100">{climateMessage}</div>}
-            {!climateLoading && climateMessage && <div className="mt-4 rounded-xl border border-amber-500/40 bg-amber-500/10 p-3 text-sm font-medium text-amber-300">{climateMessage}</div>}
+            {!climateLoading && climateMessage && <div className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-semibold text-amber-900">{climateMessage}</div>}
             {climateData && <>
-              <div id="climate-warning" className="mt-5 scroll-mt-24 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]"><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">Weather intelligence</div>{climateData.current ? <div className="grid gap-3 sm:grid-cols-3"><div><div className="text-xs text-slate-500">Temperature</div><div className="mt-1 text-2xl font-bold text-white">{climateData.current.temperature}°C</div></div><div><div className="text-xs text-slate-500">Feels like</div><div className="mt-1 text-lg text-slate-200">{climateData.current.feelsLike}°C</div></div><div><div className="text-xs text-slate-500">Humidity</div><div className="mt-1 text-lg text-slate-200">{climateData.current.humidity}%</div></div><div><div className="text-xs text-slate-500">Rainfall</div><div className="mt-1 text-lg text-slate-200">{climateData.current.precipitation} mm</div></div><div><div className="text-xs text-slate-500">Wind</div><div className="mt-1 text-lg text-slate-200">{climateData.current.windSpeed} km/h</div></div><div><div className="text-xs text-slate-500">Conditions</div><div className="mt-1 text-lg text-slate-200">Code {climateData.current.weatherCode}</div></div></div> : <div className="text-sm text-slate-500">Weather data is currently unavailable for this location.</div>}</div><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">AI Early Warning Center</div>{climateData.risks?.length ? climateData.risks.map((risk) => <div key={risk.type} className="mb-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3"><div className="font-bold text-amber-300">⚠ {risk.type}</div><div className="mt-1 text-xs text-slate-300">Risk: {risk.level} · Confidence: {risk.confidence}</div><div className="mt-2 text-xs text-slate-400">{risk.evidence.join(' · ')}</div></div>) : <div className="text-sm text-slate-500">No risk assessment is available. No official alert is being claimed.</div>}</div></div>
+              <div id="climate-warning" className="mt-5 scroll-mt-24 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]"><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">Weather intelligence</div>{climateData.current ? <div className="grid gap-3 sm:grid-cols-3"><div><div className="text-xs text-slate-500">Temperature</div><div className="mt-1 text-2xl font-bold text-white">{climateData.current.temperature}°C</div></div><div><div className="text-xs text-slate-500">Feels like</div><div className="mt-1 text-lg text-slate-200">{climateData.current.feelsLike}°C</div></div><div><div className="text-xs text-slate-500">Humidity</div><div className="mt-1 text-lg text-slate-200">{climateData.current.humidity}%</div></div><div><div className="text-xs text-slate-500">Rainfall</div><div className="mt-1 text-lg text-slate-200">{climateData.current.precipitation} mm</div></div><div><div className="text-xs text-slate-500">Wind</div><div className="mt-1 text-lg text-slate-200">{climateData.current.windSpeed} km/h</div></div><div><div className="text-xs text-slate-500">Conditions</div><div className="mt-1 text-lg text-slate-200">Code {climateData.current.weatherCode}</div></div></div> : <div className="text-sm text-slate-500">Weather data is currently unavailable for this location.</div>}</div><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">AI Early Warning Center</div>{climateData.risks?.length ? climateData.risks.map((risk) => <div key={risk.type} className="mb-3 rounded-lg border border-amber-300 bg-amber-50 p-3"><div className="font-bold text-amber-900">⚠ {risk.type}</div><div className="mt-1 text-xs text-slate-700 font-medium">Risk: {risk.level} · Confidence: {risk.confidence}</div><div className="mt-2 text-xs text-slate-600">{risk.evidence.join(' · ')}</div></div>) : <div className="text-sm text-slate-500">No risk assessment is available. No official alert is being claimed.</div>}</div></div>
               <div id="climate-forecast" className="mt-4 scroll-mt-24 rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 flex flex-wrap items-center justify-between gap-3"><div className="text-sm font-semibold">7-day forecast</div><span className="text-xs text-slate-500">Source: {climateData.source}</span></div><div className="grid gap-2 sm:grid-cols-4 lg:grid-cols-7">{(climateData.daily ?? []).map((day) => <div key={day.date} className="rounded-lg bg-slate-900 p-2 text-xs"><div className="text-slate-400">{new Date(day.date).toLocaleDateString(undefined, { weekday: 'short' })}</div><div className="mt-2 text-slate-200">{day.max}° / {day.min}°C</div><div className="mt-1 text-teal-300">Rain {day.precipitationProbability}%</div></div>)}</div></div>
               <div id="climate-history" className="mt-4 scroll-mt-24 rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-2 text-sm font-semibold">Historical Trend Analysis</div><div className="text-sm text-slate-400">Historical weather and satellite trend data is unavailable until an archive provider and dated imagery are configured. No trend is inferred from the current forecast.</div></div>
               <div className="mt-4 grid gap-4 lg:grid-cols-2"><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">Climate Profile</div><div className="text-sm text-slate-400">Historical climate data is unavailable until an archive provider is configured. Current forecast data must not be interpreted as long-term climate.</div></div><div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">Remote-sensing indicators</div><div className="space-y-2 text-sm text-slate-400"><div>NDVI: unavailable, required spectral bands are not present.</div><div>NDWI: unavailable, required spectral bands are not present.</div><div>NDBI: unavailable, required spectral bands are not present.</div><div>NBR: unavailable, required spectral bands are not present.</div></div></div></div>
@@ -1771,127 +1771,127 @@ function App() {
             </div>
 
             {nearbyLoading && <div className="mt-5 rounded-xl border border-teal-400/20 bg-teal-400/10 p-4 text-sm text-teal-100">Checking location, imagery availability, and nearby change evidence...</div>}
-            {nearbyError && <div role="alert" className="mt-5 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm font-semibold text-amber-300">{nearbyError}</div>}
+            {nearbyError && <div role="alert" className="mt-5 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm font-semibold text-amber-900">{nearbyError}</div>}
             {nearbyAnalysis && !nearbyLoading && (
               <>
                 <div className="mt-5 grid gap-3 md:grid-cols-4">
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"><div className="text-xs text-slate-500">Location</div><div className="mt-1 truncate text-sm text-slate-200">{selectedPlaceName || locationAddress || 'Selected area'}</div></div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"><div className="text-xs text-slate-500">Radius</div><div className="mt-1 text-sm text-slate-200">{nearbyAnalysis.radius >= 1000 ? `${nearbyAnalysis.radius / 1000} km` : `${nearbyAnalysis.radius} m`}</div></div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"><div className="text-xs text-slate-500">Coordinates</div><div className="mt-1 font-mono text-xs text-slate-200">{nearbyAnalysis.latitude.toFixed(5)}, {nearbyAnalysis.longitude.toFixed(5)}</div></div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3"><div className="text-xs text-slate-400">Data mode</div><div className="mt-1 text-sm font-semibold text-teal-300">{nearbyAnalysis.mode === 'uploaded-imagery' ? 'Uploaded imagery' : 'Evidence unavailable'}</div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm"><div className="text-xs font-medium text-slate-500">Location</div><div className="mt-1 truncate text-sm font-semibold text-slate-900">{selectedPlaceName || locationAddress || 'Selected area'}</div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm"><div className="text-xs font-medium text-slate-500">Radius</div><div className="mt-1 text-sm font-semibold text-slate-900">{nearbyAnalysis.radius >= 1000 ? `${nearbyAnalysis.radius / 1000} km` : `${nearbyAnalysis.radius} m`}</div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm"><div className="text-xs font-medium text-slate-500">Coordinates</div><div className="mt-1 font-mono text-xs font-semibold text-slate-800">{nearbyAnalysis.latitude.toFixed(5)}, {nearbyAnalysis.longitude.toFixed(5)}</div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm"><div className="text-xs font-medium text-slate-500">Data mode</div><div className="mt-1 text-sm font-bold text-amber-800">{nearbyAnalysis.mode === 'uploaded-imagery' ? 'Uploaded imagery' : 'Evidence unavailable'}</div></div>
                 </div>
-                <div className="mt-4 rounded-xl border border-teal-500/30 bg-slate-900/90 p-4 text-xs leading-6 text-slate-200">
+                <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-xs leading-6 text-slate-800 font-medium">
                   {nearbyAnalysis.message}
-                  {!images.length && <button type="button" onClick={() => goToSection('analysis')} className="ml-3 rounded-lg border border-teal-400/40 px-2 py-1 text-teal-200 hover:bg-teal-400/10">Upload area imagery</button>}
-                  <div className="mt-2 flex items-center gap-2 text-slate-400">Heatmap opacity <input type="range" min="0" max="1" step="0.05" value={nearbyHeatmapOpacity} onChange={(event) => setNearbyHeatmapOpacity(Number(event.target.value))} /></div>
+                  {!images.length && <button type="button" onClick={() => goToSection('analysis')} className="ml-3 rounded-lg border border-amber-300 bg-white px-2 py-1 text-amber-800 font-semibold hover:bg-amber-100">Upload area imagery</button>}
+                  <div className="mt-2 flex items-center gap-2 text-slate-600 font-medium">Heatmap opacity <input type="range" min="0" max="1" step="0.05" value={nearbyHeatmapOpacity} onChange={(event) => setNearbyHeatmapOpacity(Number(event.target.value))} /></div>
                 </div>
-                <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-                  <div className="mb-3 text-sm font-semibold text-slate-100">Issues around your location</div>
+                <div className="mt-5 rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm">
+                  <div className="mb-3 text-sm font-bold text-slate-900">Issues around your location</div>
                   <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
                     {nearbyIssueCategories.map((category) => (
-                      <div key={category.key} className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
-                        <div className="text-[10px] uppercase tracking-[0.2em] text-slate-400">{category.label}</div>
-                        <div className={`mt-2 text-2xl font-semibold ${category.accent === 'emerald' ? 'text-emerald-300' : category.accent === 'teal' ? 'text-teal-300' : category.accent === 'amber' ? 'text-amber-300' : category.accent === 'lime' ? 'text-lime-300' : 'text-rose-300'}`}>{category.count}</div>
-                        <div className="mt-1 text-[11px] leading-4 text-slate-400">{category.description}</div>
+                      <div key={category.key} className="rounded-xl border border-amber-200/60 bg-gradient-to-br from-amber-50/60 to-white p-3 shadow-sm">
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-slate-600 font-semibold">{category.label}</div>
+                        <div className="mt-2 text-2xl font-bold text-amber-800">{category.count}</div>
+                        <div className="mt-1 text-[11px] leading-4 text-slate-600 font-medium">{category.description}</div>
                       </div>
                     ))}
                   </div>
-                  <p className="mt-3 text-xs leading-5 text-slate-400">
+                  <p className="mt-3 text-xs leading-5 text-slate-600 font-medium">
                     {nearbyAnalysis.issues.length
                       ? 'Verified issue markers in this radius are limited to evidence returned for the selected area.'
                       : 'No verified nearby issue markers were found for this live location, so the app is not reporting a confirmed issue without evidence.'}
                   </p>
                 </div>
-                <div className="mt-5 rounded-xl border border-teal-500/30 bg-teal-500/10 p-4">
+                <div className="mt-5 rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm">
                   <div className="mb-3 flex items-center justify-between gap-3">
-                    <div className="text-sm font-bold text-teal-200">Proximity &amp; Nearby Feature Analysis</div>
-                    <div className="text-[10px] uppercase tracking-[0.22em] text-slate-300">Current location</div>
+                    <div className="text-sm font-bold text-amber-900">Proximity &amp; Nearby Feature Analysis</div>
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-slate-500 font-semibold">Current location</div>
                   </div>
-                  <input value={proximityQuery} onChange={(event) => setProximityQuery(event.target.value)} placeholder="What important features or issues are near this location?" className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500" />
+                  <input value={proximityQuery} onChange={(event) => setProximityQuery(event.target.value)} placeholder="What important features or issues are near this location?" className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 placeholder:text-slate-400" />
                   <div className="mt-3 flex flex-wrap gap-2">
                     {['What important features or issues are near this location?', 'Find all major roads within 2 km of this location.', 'Show nearby hospitals and water features.', 'List hazards and built-up areas near me.'].map((question) => (
-                      <button key={question} type="button" onClick={() => setProximityQuery(question)} className="rounded-full border border-slate-700 px-2 py-1 text-[10px] text-slate-300 hover:border-teal-400">{question}</button>
+                      <button key={question} type="button" onClick={() => setProximityQuery(question)} className="rounded-full border border-slate-300 px-2 py-1 text-[10px] text-slate-700 hover:border-amber-400 font-medium">{question}</button>
                     ))}
                   </div>
                   <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                     {proximityFeatures.length ? proximityFeatures.map((feature) => (
-                      <div key={feature.id} className="rounded-xl border border-slate-800 bg-slate-900/80 p-3 shadow-md">
+                      <div key={feature.id} className="rounded-xl border border-amber-200/80 bg-white p-3 shadow-sm">
                         <div className="flex items-center justify-between gap-2">
-                          <div className="text-sm font-semibold text-white">{feature.label}</div>
-                          <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${feature.priority === 'HIGH' ? 'bg-red-500/20 text-red-300 border border-red-500/40' : feature.priority === 'MEDIUM' ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>{feature.priority}</span>
+                          <div className="text-sm font-bold text-slate-900">{feature.label}</div>
+                          <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${feature.priority === 'HIGH' ? 'bg-red-100 text-red-800 border border-red-300' : feature.priority === 'MEDIUM' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'}`}>{feature.priority}</span>
                         </div>
-                        <div className="mt-2 text-xl font-bold text-teal-300">{feature.distanceMeters} m</div>
-                        <div className="mt-1 text-[11px] leading-5 text-slate-200">{feature.detail}</div>
+                        <div className="mt-2 text-xl font-extrabold text-amber-700">{feature.distanceMeters} m</div>
+                        <div className="mt-1 text-[11px] leading-5 text-slate-600 font-medium">{feature.detail}</div>
                       </div>
-                    )) : <div className="col-span-full rounded-xl border border-dashed border-slate-700 p-4 text-xs text-slate-400">No proximity features were calculated for this location yet. Click Locate me or choose a place to generate nearby feature details.</div>}
+                    )) : <div className="col-span-full rounded-xl border border-dashed border-slate-300 p-4 text-xs text-slate-500">No proximity features were calculated for this location yet. Click Locate me or choose a place to generate nearby feature details.</div>}
                   </div>
-                  <div className="mt-3 text-xs text-slate-400">Example: Hospital → 1.2 km; Main road → 350 m; Lake → 800 m; Built-up area → 150 m; Detected hazard → 420 m.</div>
+                  <div className="mt-3 text-xs text-slate-500 font-medium">Example: Hospital → 1.2 km; Main road → 350 m; Lake → 800 m; Built-up area → 150 m; Detected hazard → 420 m.</div>
                 </div>
-                <div className="mt-4 rounded-xl border border-teal-500/30 bg-teal-500/10 p-4">
+                <div className="mt-4 rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="text-sm font-semibold text-teal-200">Copernicus Data Space</div>
-                    <span className="text-xs text-slate-300">Sentinel-2 catalogue search</span>
+                    <div className="text-sm font-bold text-slate-900">Copernicus Data Space</div>
+                    <span className="text-xs font-medium text-slate-500">Sentinel-2 catalogue search</span>
                   </div>
-                  <div className="mt-2 text-xs text-slate-200">{satelliteSearchMessage || 'Searching for verified scenes...'}</div>
-                  {satelliteScenes.length > 0 && <div className="mt-3 space-y-2">{satelliteScenes.slice(0, 3).map((scene) => <div key={scene.id} className="grid gap-2 rounded-lg border border-slate-700 bg-slate-950/50 p-3 text-xs sm:grid-cols-3"><div><span className="text-slate-500">Acquisition</span><div className="mt-1 text-slate-200">{scene.acquisition ? new Date(scene.acquisition).toLocaleString() : 'Unavailable'}</div></div><div><span className="text-slate-500">Product</span><div className="mt-1 truncate text-slate-200" title={scene.name}>{scene.name || scene.id}</div></div><div><span className="text-slate-500">Cloud cover</span><div className="mt-1 text-slate-200">{scene.cloudCover === null ? 'Unavailable' : `${scene.cloudCover}%`}</div></div></div>)}</div>}
+                  <div className="mt-2 text-xs font-medium text-slate-600">{satelliteSearchMessage || 'Searching for verified scenes...'}</div>
+                  {satelliteScenes.length > 0 && <div className="mt-3 space-y-2">{satelliteScenes.slice(0, 3).map((scene) => <div key={scene.id} className="grid gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs sm:grid-cols-3"><div><span className="text-slate-500 font-medium">Acquisition</span><div className="mt-1 font-medium text-slate-800">{scene.acquisition ? new Date(scene.acquisition).toLocaleString() : 'Unavailable'}</div></div><div><span className="text-slate-500 font-medium">Product</span><div className="mt-1 truncate font-medium text-slate-800" title={scene.name}>{scene.name || scene.id}</div></div><div><span className="text-slate-500 font-medium">Cloud cover</span><div className="mt-1 font-medium text-slate-800">{scene.cloudCover === null ? 'Unavailable' : `${scene.cloudCover}%`}</div></div></div>)}</div>}
                 </div>
                 <div className="mt-5 grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                    <div className="mb-3 flex flex-wrap items-center justify-between gap-3"><div className="text-sm font-semibold">Issues Detected</div><div className="flex gap-2"><select value={nearbyCategory} onChange={(event) => setNearbyCategory(event.target.value)} className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-300"><option value="all">All categories</option><option value="environmental">Environmental</option><option value="infrastructure">Infrastructure</option><option value="urban">Urban</option><option value="agriculture">Agriculture</option><option value="disaster">Disaster</option></select><label className="flex items-center gap-2 text-xs text-slate-400">Confidence <input type="range" min="0" max="100" value={nearbyConfidenceThreshold} onChange={(event) => setNearbyConfidenceThreshold(Number(event.target.value))} /></label></div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm">
+                    <div className="mb-3 flex flex-wrap items-center justify-between gap-3"><div className="text-sm font-bold text-slate-900">Issues Detected</div><div className="flex gap-2"><select value={nearbyCategory} onChange={(event) => setNearbyCategory(event.target.value)} className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs text-slate-800 font-medium"><option value="all">All categories</option><option value="environmental">Environmental</option><option value="infrastructure">Infrastructure</option><option value="urban">Urban</option><option value="agriculture">Agriculture</option><option value="disaster">Disaster</option></select><label className="flex items-center gap-2 text-xs text-slate-600 font-medium">Confidence <input type="range" min="0" max="100" value={nearbyConfidenceThreshold} onChange={(event) => setNearbyConfidenceThreshold(Number(event.target.value))} /></label></div></div>
                     <div className="space-y-3">
-                      {nearbyAnalysis.issues.filter((issue) => (nearbyCategory === 'all' || issue.category === nearbyCategory) && (issue.confidence === null || issue.confidence >= nearbyConfidenceThreshold)).map((issue) => <button key={issue.id} type="button" onClick={() => setSelectedNearbyIssue(issue)} className={`w-full rounded-xl border p-3 text-left ${selectedNearbyIssue?.id === issue.id ? 'border-teal-400/60 bg-teal-400/10' : 'border-slate-800 bg-slate-900/70 hover:border-slate-600'}`}><div className="flex items-start justify-between gap-3"><div><div className="font-bold text-amber-300">⚠ {issue.issue_type}</div><div className="mt-1 text-xs text-slate-300">{(issue.distance_meters / 1000).toFixed(issue.distance_meters < 1000 ? 0 : 1)} {issue.distance_meters < 1000 ? 'm' : 'km'} from selected location · {issue.category}</div></div><span title="Severity indicates anomaly magnitude or priority, not confirmed real-world danger." className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${issue.severity === 'HIGH' ? 'bg-red-500/20 text-red-300 border border-red-500/40' : issue.severity === 'MEDIUM' ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>{issue.severity}</span></div><div className="mt-2 text-xs text-slate-300">Confidence: {issue.confidence === null ? 'Unavailable' : `${issue.confidence}%`} · Reliability: <span className="font-semibold text-teal-300">{issue.reliability}</span></div></button>)}
-                          {!nearbyAnalysis.issues.length && <div className="rounded-xl border border-dashed border-slate-700 p-5 text-sm text-slate-400">No verified issues detected. This is not a finding that the area is clear: georeferenced imagery analysis is unavailable, so SatQuery did not invent incidents or markers.</div>}
+                      {nearbyAnalysis.issues.filter((issue) => (nearbyCategory === 'all' || issue.category === nearbyCategory) && (issue.confidence === null || issue.confidence >= nearbyConfidenceThreshold)).map((issue) => <button key={issue.id} type="button" onClick={() => setSelectedNearbyIssue(issue)} className={`w-full rounded-xl border p-3 text-left transition ${selectedNearbyIssue?.id === issue.id ? 'border-amber-400 bg-amber-50 shadow-sm' : 'border-slate-200 bg-white hover:border-amber-300'}`}><div className="flex items-start justify-between gap-3"><div><div className="font-bold text-slate-900">⚠ {issue.issue_type}</div><div className="mt-1 text-xs text-slate-600 font-medium">{(issue.distance_meters / 1000).toFixed(issue.distance_meters < 1000 ? 0 : 1)} {issue.distance_meters < 1000 ? 'm' : 'km'} from selected location · {issue.category}</div></div><span title="Severity indicates anomaly magnitude or priority, not confirmed real-world danger." className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${issue.severity === 'HIGH' ? 'bg-red-100 text-red-800 border border-red-300' : issue.severity === 'MEDIUM' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'}`}>{issue.severity}</span></div><div className="mt-2 text-xs text-slate-600 font-medium">Confidence: {issue.confidence === null ? 'Unavailable' : `${issue.confidence}%`} · Reliability: <span className="font-bold text-amber-800">{issue.reliability}</span></div></button>)}
+                          {!nearbyAnalysis.issues.length && <div className="rounded-xl border border-dashed border-slate-300 p-5 text-sm text-slate-500">No verified issues detected. This is not a finding that the area is clear: georeferenced imagery analysis is unavailable, so SatQuery did not invent incidents or markers.</div>}
                     </div>
                   </div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-                    <div className="mb-3 text-sm font-semibold">Evidence and follow-up</div>
-                    {selectedNearbyIssue ? <><div className="text-sm text-slate-200">{selectedNearbyIssue.description}</div><div className="mt-3 text-xs text-slate-400">Evidence</div><ul className="mt-2 space-y-2 text-xs text-slate-300">{selectedNearbyIssue.evidence.map((item) => <li key={item}>• {item}</li>)}</ul><div className="mt-4 grid grid-cols-2 gap-2 text-xs"><div><span className="text-slate-500">Area</span><div className="mt-1 text-slate-200">{selectedNearbyIssue.area === null ? 'Unavailable' : `${selectedNearbyIssue.area} km²`}</div></div><div><span className="text-slate-500">Detected</span><div className="mt-1 text-slate-200">{new Date(selectedNearbyIssue.detected_at).toLocaleDateString()}</div></div></div></> : <div className="text-sm text-slate-500">Select an issue to inspect its evidence.</div>}
-                    <div className="mt-5"><input value={nearbyQuery} onChange={(event) => setNearbyQuery(event.target.value)} placeholder="Ask something specific about this area..." className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500" /><div className="mt-2 flex flex-wrap gap-2">{['Is there any recent surface change?', 'Are there signs of flooding?', 'Has vegetation changed?', 'Has the built-up area increased?'].map((question) => <button key={question} type="button" onClick={() => setNearbyQuery(question)} className="rounded-full border border-slate-700 px-2 py-1 text-[10px] text-slate-300 hover:border-teal-400">{question}</button>)}</div></div>
+                  <div className="rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm">
+                    <div className="mb-3 text-sm font-bold text-slate-900">Evidence and follow-up</div>
+                    {selectedNearbyIssue ? <><div className="text-sm font-semibold text-slate-800">{selectedNearbyIssue.description}</div><div className="mt-3 text-xs font-bold uppercase tracking-wider text-amber-800">Evidence</div><ul className="mt-2 space-y-2 text-xs text-slate-700 font-medium">{selectedNearbyIssue.evidence.map((item) => <li key={item}>• {item}</li>)}</ul><div className="mt-4 grid grid-cols-2 gap-2 text-xs"><div><span className="text-slate-500 font-medium">Area</span><div className="mt-1 font-semibold text-slate-800">{selectedNearbyIssue.area === null ? 'Unavailable' : `${selectedNearbyIssue.area} km²`}</div></div><div><span className="text-slate-500 font-medium">Detected</span><div className="mt-1 font-semibold text-slate-800">{new Date(selectedNearbyIssue.detected_at).toLocaleDateString()}</div></div></div></> : <div className="text-sm text-slate-500">Select an issue to inspect its evidence.</div>}
+                    <div className="mt-5"><input value={nearbyQuery} onChange={(event) => setNearbyQuery(event.target.value)} placeholder="Ask something specific about this area..." className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800 placeholder:text-slate-400 font-medium" /><div className="mt-2 flex flex-wrap gap-2">{['Is there any recent surface change?', 'Are there signs of flooding?', 'Has vegetation changed?', 'Has the built-up area increased?'].map((question) => <button key={question} type="button" onClick={() => setNearbyQuery(question)} className="rounded-full border border-slate-300 px-2 py-1 text-[10px] text-slate-700 hover:border-amber-400 font-medium">{question}</button>)}</div></div>
                   </div>
                 </div>
-                <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950/60 p-4"><div className="mb-3 text-sm font-semibold">Issue summary &amp; reliability</div><p className="text-sm leading-6 text-slate-300">{nearbyAnalysis.issues.length ? 'The selected area shows indications requiring further verification.' : 'No issue summary is available because verified, georeferenced evidence was not returned for this area.'}</p><div className="mt-3 grid gap-2 text-xs text-slate-400 sm:grid-cols-3"><div><span className="text-slate-500">Source</span><div className="mt-1 text-slate-200">{satelliteScenes.length ? 'Copernicus Sentinel-2 catalogue' : 'Unavailable'}</div></div><div><span className="text-slate-500">Evidence</span><div className="mt-1 text-slate-200">{nearbyAnalysis.issues.length ? 'Uploaded/provider imagery' : 'Not sufficient'}</div></div><div><span className="text-slate-500">Reliability</span><div className="mt-1 font-semibold text-teal-300">{nearbyAnalysis.issues.length ? 'Review required' : 'Unavailable'}</div></div></div><div className="mt-4 grid gap-2 text-xs text-slate-300 md:grid-cols-5">{nearbyAnalysis.execution_trace.map((step) => <div key={step} className="rounded-lg bg-slate-900 px-2 py-2">✓ {step}</div>)}</div></div>
+                <div className="mt-5 rounded-xl border border-amber-200/80 bg-white p-4 shadow-sm"><div className="mb-3 text-sm font-bold text-slate-900">Issue summary &amp; reliability</div><p className="text-sm leading-6 text-slate-700 font-medium">{nearbyAnalysis.issues.length ? 'The selected area shows indications requiring further verification.' : 'No issue summary is available because verified, georeferenced evidence was not returned for this area.'}</p><div className="mt-3 grid gap-2 text-xs sm:grid-cols-3"><div className="rounded-lg border border-amber-200/70 bg-amber-50/50 p-2.5"><span className="text-slate-500 font-medium">Source</span><div className="mt-1 font-semibold text-slate-800">{satelliteScenes.length ? 'Copernicus Sentinel-2 catalogue' : 'Unavailable'}</div></div><div className="rounded-lg border border-amber-200/70 bg-amber-50/50 p-2.5"><span className="text-slate-500 font-medium">Evidence</span><div className="mt-1 font-semibold text-slate-800">{nearbyAnalysis.issues.length ? 'Uploaded/provider imagery' : 'Not sufficient'}</div></div><div className="rounded-lg border border-amber-200/70 bg-amber-50/50 p-2.5"><span className="text-slate-500 font-medium">Reliability</span><div className="mt-1 font-bold text-amber-800">{nearbyAnalysis.issues.length ? 'Review required' : 'Unavailable'}</div></div></div><div className="mt-4 grid gap-2 text-xs md:grid-cols-5">{nearbyAnalysis.execution_trace.map((step) => <div key={step} className="rounded-lg border border-amber-200/60 bg-amber-50/80 px-2 py-2 font-medium text-slate-800">✓ {step}</div>)}</div></div>
               </>
             )}
           </div>
         </section>
 
-        <section hidden={activeSection !== 'dataset'} id="dataset" className="mb-6 scroll-mt-24 overflow-hidden rounded-2xl border border-emerald-500/20 bg-slate-900/90 shadow-glow">
-          <div className="border-b border-slate-800 bg-slate-900/90 p-5">
+        <section hidden={activeSection !== 'dataset'} id="dataset" className="mb-6 scroll-mt-24 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-glow">
+          <div className="border-b border-amber-200 bg-gradient-to-r from-amber-50 via-white to-yellow-50 p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <div className="mb-2 text-xs uppercase tracking-[0.22em] text-emerald-300 font-semibold">Copernicus Dataset</div>
-                <h1 className="text-2xl font-bold text-white">Copernicus Dataset</h1>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Sentinel-1 SAR and Sentinel-2 multispectral Earth observation data.</p>
+                <div className="mb-2 text-xs uppercase tracking-[0.22em] text-amber-700 font-bold">Copernicus Dataset</div>
+                <h1 className="text-2xl font-bold text-slate-900">Copernicus Dataset</h1>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">Sentinel-1 SAR and Sentinel-2 multispectral Earth observation data.</p>
               </div>
-              <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-xs font-semibold text-emerald-200">Dataset-ready mode</span>
+              <span className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800">Dataset-ready mode</span>
             </div>
           </div>
 
-          <div className="grid gap-px bg-slate-800 md:grid-cols-4">
-            <div className="bg-slate-900/95 p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500">Image pairs</div><div className="mt-2 text-2xl font-bold text-white">464K+</div><div className="mt-1 text-xs text-slate-400">Co-registered samples</div></div>
-            <div className="bg-slate-900/95 p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500">Text annotations</div><div className="mt-2 text-2xl font-bold text-white">9.6M</div><div className="mt-1 text-xs text-slate-400">Captions, VQA, regions</div></div>
-            <div className="bg-slate-900/95 p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500">Sensor pair</div><div className="mt-2 text-lg font-bold text-white">S1 + S2</div><div className="mt-1 text-xs text-slate-400">SAR + multispectral</div></div>
-            <div className="bg-slate-900/95 p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500">Dataset</div><div className="mt-2 text-lg font-bold text-emerald-300">Copernicus</div><div className="mt-1 text-xs text-slate-400">Earth observation data</div></div>
+          <div className="grid gap-px bg-slate-200 md:grid-cols-4">
+            <div className="bg-white p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">Image pairs</div><div className="mt-2 text-2xl font-bold text-slate-900">464K+</div><div className="mt-1 text-xs text-slate-500">Co-registered samples</div></div>
+            <div className="bg-white p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">Text annotations</div><div className="mt-2 text-2xl font-bold text-slate-900">9.6M</div><div className="mt-1 text-xs text-slate-500">Captions, VQA, regions</div></div>
+            <div className="bg-white p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">Sensor pair</div><div className="mt-2 text-lg font-bold text-slate-900">S1 + S2</div><div className="mt-1 text-xs text-slate-500">SAR + multispectral</div></div>
+            <div className="bg-white p-4"><div className="text-xs uppercase tracking-[0.15em] text-slate-500 font-semibold">Dataset</div><div className="mt-2 text-lg font-bold text-amber-700">Copernicus</div><div className="mt-1 text-xs text-slate-500">Earth observation data</div></div>
           </div>
 
-          <div className="border-b border-slate-800 bg-slate-900/70 p-5">
+          <div className="border-b border-slate-200 bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <div className="text-sm font-semibold text-white">Copernicus Dataset products</div>
-                <div className="mt-1 text-xs text-slate-300">Real Sentinel-2 products returned for the selected location.</div>
+                <div className="text-sm font-semibold text-slate-900">Copernicus Dataset products</div>
+                <div className="mt-1 text-xs text-slate-500">Real Sentinel-2 products returned for the selected location.</div>
               </div>
-              <button type="button" disabled={!safeLocation} onClick={() => safeLocation && void searchCopernicusScenes(safeLocation)} className="rounded-lg bg-teal-500 px-3 py-2 text-xs font-semibold text-white hover:bg-teal-400 disabled:cursor-not-allowed disabled:opacity-50">Refresh dataset</button>
+              <button type="button" disabled={!safeLocation} onClick={() => safeLocation && void searchCopernicusScenes(safeLocation)} className="rounded-lg bg-amber-500 px-3 py-2 text-xs font-semibold text-white hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-50">Refresh dataset</button>
             </div>
-            <div className="mt-3 rounded-lg border border-teal-500/30 bg-slate-950/80 px-3 py-2 text-xs text-teal-200">{satelliteSearchMessage || (safeLocation ? 'Refresh to load Copernicus products for this location.' : 'Select a location on the map before loading products.')}</div>
+            <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">{satelliteSearchMessage || (safeLocation ? 'Refresh to load Copernicus products for this location.' : 'Select a location on the map before loading products.')}</div>
             {satelliteScenes.length > 0 && (
               <div className="mt-4 grid gap-3 lg:grid-cols-2">
                 {satelliteScenes.slice(0, 6).map((scene) => (
-                  <a key={scene.id} href={scene.productUrl ?? '#'} target="_blank" rel="noreferrer" className="rounded-xl border border-slate-800 bg-slate-950/60 p-3 hover:border-teal-400">
-                    <div className="truncate text-sm font-semibold text-white" title={scene.name}>{scene.name || scene.id}</div>
-                    <div className="mt-2 grid gap-2 text-xs text-slate-300 sm:grid-cols-3">
-                      <div><span className="text-slate-500">Acquired</span><div className="mt-1 text-slate-200">{scene.acquisition ? new Date(scene.acquisition).toLocaleDateString() : 'Unavailable'}</div></div>
-                      <div><span className="text-slate-500">Satellite</span><div className="mt-1 text-teal-300 font-medium">{scene.satellite}</div></div>
-                      <div><span className="text-slate-500">Cloud cover</span><div className="mt-1 text-slate-200">{scene.cloudCover === null ? 'Unavailable' : `${scene.cloudCover}%`}</div></div>
+                  <a key={scene.id} href={scene.productUrl ?? '#'} target="_blank" rel="noreferrer" className="rounded-xl border border-slate-200 bg-slate-50 p-3 hover:border-amber-400">
+                    <div className="truncate text-sm font-semibold text-slate-900" title={scene.name}>{scene.name || scene.id}</div>
+                    <div className="mt-2 grid gap-2 text-xs text-slate-600 sm:grid-cols-3">
+                      <div><span className="text-slate-500">Acquired</span><div className="mt-1 text-slate-800">{scene.acquisition ? new Date(scene.acquisition).toLocaleDateString() : 'Unavailable'}</div></div>
+                      <div><span className="text-slate-500">Satellite</span><div className="mt-1 text-amber-800 font-semibold">{scene.satellite}</div></div>
+                      <div><span className="text-slate-500">Cloud cover</span><div className="mt-1 text-slate-800">{scene.cloudCover === null ? 'Unavailable' : `${scene.cloudCover}%`}</div></div>
                     </div>
                   </a>
                 ))}
@@ -2039,28 +2039,28 @@ function App() {
               {analysis?.result?.detected_objects?.map((object) => (
                 <div
                   key={object.id}
-                  className="pointer-events-none absolute rounded-md border-2 border-teal-400 bg-teal-400/20"
+                  className="pointer-events-none absolute rounded-md border-2 border-amber-400 bg-amber-400/20"
                   style={{
                     left: `${object.x}%`,
                     top: `${object.y}%`,
                     width: `${object.width}%`,
                     height: `${object.height}%`,
                     opacity: highlightedObjectType === object.object_type ? 1 : 0.85,
-                    boxShadow: highlightedObjectType === object.object_type ? '0 0 18px rgba(45, 212, 191, 0.95), 0 0 4px #000' : '0 0 6px rgba(0, 0, 0, 0.8)',
+                    boxShadow: highlightedObjectType === object.object_type ? '0 0 18px rgba(245, 158, 11, 0.95), 0 0 4px #000' : '0 0 6px rgba(0, 0, 0, 0.8)',
                   }}
                 />
               ))}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-950/60 via-transparent to-teal-500/10" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-950/60 via-transparent to-amber-500/10" />
               <div className="absolute left-5 top-5 rounded-lg bg-slate-950/75 px-2 py-1 text-xs text-slate-200">Satellite image</div>
               <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-200">
-                <div className="flex items-center gap-2 font-medium"><MapPinned size={15} className="text-teal-300" /> Analysis area</div>
+                <div className="flex items-center gap-2 font-medium"><MapPinned size={15} className="text-amber-400" /> Analysis area</div>
                 <div className="mt-2 text-xs text-slate-400">Detected objects: 42 · Average confidence: 91.6%</div>
               </div>
             </div>
 
             <div className="mt-5 grid gap-4 xl:grid-cols-3">
               <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-200"><Activity size={15} className="text-teal-300" /> Land-cover distribution</div>
+                <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-200"><Activity size={15} className="text-amber-400" /> Land-cover distribution</div>
                 <div className="mt-4 h-44">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -2074,7 +2074,7 @@ function App() {
               </div>
 
               <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-200"><BarChart3 size={15} className="text-teal-300" /> Change detection</div>
+                <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-200"><BarChart3 size={15} className="text-amber-400" /> Change detection</div>
                 <div className="mt-4 h-44">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={analysis?.result?.detected_changes ?? []}>
@@ -2089,7 +2089,7 @@ function App() {
               </div>
 
               <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                <div className="mb-3 flex items-center gap-2 text-sm font-medium text-slate-200"><CheckCircle2 size={15} className="text-teal-300" /> Statistics</div>
+                <div className="mb-3 flex items-center gap-2 text-sm font-medium text-slate-200"><CheckCircle2 size={15} className="text-amber-400" /> Statistics</div>
                 <div className="space-y-2 text-sm text-slate-300">
                   <div className="flex justify-between"><span>Confidence</span><span className="font-semibold text-emerald-300">{analysis?.result?.confidence_score ?? 0}%</span></div>
                   <div className="flex justify-between"><span>Reliability</span><span className="font-semibold text-violet-300">{analysis?.result?.reliability_score ?? 0}%</span></div>
