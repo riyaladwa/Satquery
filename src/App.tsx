@@ -864,19 +864,23 @@ function App() {
 
   if (!isDashboardOpen) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50 px-6 text-slate-800">
-        <div className="w-full max-w-3xl rounded-[28px] border border-amber-200 bg-white p-8 shadow-[0_25px_80px_rgba(15,23,42,0.12)] ring-1 ring-amber-100 sm:p-12">
-          <div className="mb-8 flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 ring-1 ring-amber-300"><Sparkles size={22} /></div>
-            <div><div className="text-lg font-bold tracking-[0.08em] text-slate-900">SATQUERY AI</div><div className="text-xs text-slate-500">Remote sensing intelligence workspace</div></div>
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-8 text-slate-800 sm:px-6">
+        <div className="w-full max-w-3xl rounded-[28px] border border-amber-200 bg-white p-5 shadow-[0_25px_80px_rgba(15,23,42,0.12)] ring-1 ring-amber-100 sm:p-12">
+          <div className="mb-6 flex items-center gap-3 sm:mb-8">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 ring-1 ring-amber-300 shrink-0"><Sparkles size={22} /></div>
+            <div><div className="text-base sm:text-lg font-bold tracking-[0.08em] text-slate-900">SATQUERY AI</div><div className="text-xs text-slate-500">Remote sensing intelligence workspace</div></div>
           </div>
           <div className="max-w-2xl">
-            <div className="mb-3 text-xs uppercase tracking-[0.28em] text-amber-700">Satellite intelligence dashboard</div>
-            <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">Explore the signals hidden in Earth imagery.</h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">Analyze uploaded satellite imagery, compare observations, inspect land cover, and explore potential nearby changes with clear evidence and provenance.</p>
-            <button type="button" onClick={() => setIsDashboardOpen(true)} className="mt-8 flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-5 py-3 font-semibold text-white shadow-[0_16px_40px_rgba(212,160,23,0.35)] transition hover:translate-y-[-1px] hover:shadow-[0_20px_45px_rgba(212,160,23,0.45)]"><Sparkles size={18} /> Explore SatQuery</button>
+            <div className="mb-3 text-[11px] sm:text-xs uppercase tracking-[0.28em] text-amber-700 font-bold">Satellite intelligence dashboard</div>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-slate-900">Explore the signals hidden in Earth imagery.</h1>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:mt-5 sm:text-base sm:leading-7">Analyze uploaded satellite imagery, compare observations, inspect land cover, and explore potential nearby changes with clear evidence and provenance.</p>
+            <button type="button" onClick={() => setIsDashboardOpen(true)} className="mt-6 flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 px-5 py-3 font-semibold text-white shadow-[0_16px_40px_rgba(212,160,23,0.35)] transition hover:translate-y-[-1px] hover:shadow-[0_20px_45px_rgba(212,160,23,0.45)] sm:mt-8"><Sparkles size={18} /> Explore SatQuery</button>
           </div>
-          <div className="mt-12 grid gap-3 border-t border-slate-200 pt-6 text-xs text-slate-600 sm:grid-cols-3"><div><div className="mb-1 font-semibold text-slate-800">Analyze</div>Ask questions about imagery and land cover.</div><div><div className="mb-1 font-semibold text-slate-800">Compare</div>Inspect before and after observations.</div><div><div className="mb-1 font-semibold text-slate-800">Discover</div>Review potential nearby changes.</div></div>
+          <div className="mt-8 grid gap-3 border-t border-slate-200 pt-6 text-xs text-slate-600 sm:mt-12 sm:grid-cols-3">
+            <div className="p-2.5 rounded-xl bg-amber-50/50 border border-amber-100/60"><div className="mb-1 font-bold text-slate-800">Analyze</div>Ask questions about imagery and land cover.</div>
+            <div className="p-2.5 rounded-xl bg-amber-50/50 border border-amber-100/60"><div className="mb-1 font-bold text-slate-800">Compare</div>Inspect before and after observations.</div>
+            <div className="p-2.5 rounded-xl bg-amber-50/50 border border-amber-100/60"><div className="mb-1 font-bold text-slate-800">Discover</div>Review potential nearby changes.</div>
+          </div>
         </div>
       </div>
     )
@@ -1435,6 +1439,9 @@ function App() {
       if (window.location.hash !== targetHash) {
         window.history.pushState(null, '', targetHash)
       }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'SATQUERY_HASH_CHANGE', hash: targetHash }, '*')
+      }
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }
@@ -1547,29 +1554,30 @@ function App() {
 
         <div className="flex-1">
           <header className="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_30px_rgba(15,23,42,0.35)]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-violet-500/15 p-2 text-violet-300 ring-1 ring-violet-400/20 shadow-[0_0_30px_rgba(139,92,246,0.18)]">
-              <Sparkles size={20} />
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="rounded-xl bg-violet-500/15 p-1.5 sm:p-2 text-violet-300 ring-1 ring-violet-400/20 shadow-[0_0_30px_rgba(139,92,246,0.18)]">
+              <Sparkles size={18} className="sm:w-5 sm:h-5" />
             </div>
             <div>
-              <div className="text-xl font-bold">SATQUERY AI</div>
-              <div className="text-xs text-slate-400">{currentLabels.brandSubtitle || 'Vision-Language Remote Sensing Assistant'}</div>
+              <div className="text-base sm:text-xl font-bold tracking-tight">SATQUERY AI</div>
+              <div className="hidden sm:block text-xs text-slate-400">{currentLabels.brandSubtitle || 'Vision-Language Remote Sensing Assistant'}</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 text-sm text-slate-300">
-            <button type="button" onClick={openSearch} className="hidden items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 md:flex">
-              <Search size={15} /> {currentLabels.search || 'Search'}
-            </button>
-            <button type="button" onClick={openSearch} className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 md:hidden">
+          <div className="flex items-center gap-1.5 sm:gap-3 text-xs sm:text-sm text-slate-300">
+            <button type="button" onClick={openSearch} className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-2 sm:px-3 text-slate-200 hover:bg-slate-700 transition" title={currentLabels.search || 'Search'}>
               <Search size={15} />
+              <span className="hidden md:inline">{currentLabels.search || 'Search'}</span>
             </button>
-            <button type="button" onClick={() => goToSection('history')} className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
-              <History size={16} /> {currentLabels.history}
+            <button type="button" onClick={() => goToSection('history')} className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-2 sm:px-3 text-slate-200 hover:bg-slate-700 transition" title={currentLabels.history}>
+              <History size={15} />
+              <span className="hidden md:inline">{currentLabels.history}</span>
             </button>
-            <button type="button" onClick={() => requestCurrentLocation(true)} className="flex items-center gap-2 rounded-lg border border-teal-400/40 bg-teal-500/10 px-3 py-2 text-teal-200 hover:bg-teal-500/20">
-              <LocateFixed size={16} /> {currentLocation ? (currentLabels.locationAllowed || 'Location Active') : (currentLabels.allowLocation || 'Allow location')}
+            <button type="button" onClick={() => requestCurrentLocation(true)} className="flex items-center gap-1.5 rounded-lg border border-teal-400/40 bg-teal-500/10 px-2.5 py-2 text-teal-200 hover:bg-teal-500/20 sm:px-3 transition" title={currentLocation ? (currentLabels.locationAllowed || 'Location Active') : (currentLabels.allowLocation || 'Allow location')}>
+              <LocateFixed size={15} />
+              <span className="hidden lg:inline">{currentLocation ? (currentLabels.locationAllowed || 'Location Active') : (currentLabels.allowLocation || 'Allow location')}</span>
+              {currentLocation && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 lg:hidden" />}
             </button>
             <button type="button" onClick={() => {
               setIsLocallyAuthenticated(false)
@@ -1578,12 +1586,13 @@ function App() {
               }
               if (isSupabaseConfigured) void supabase.auth.signOut()
               else window.localStorage.removeItem('satquery.analysis-history')
-            }} className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
-              <User size={16} /> {currentLabels.signOut || 'Sign out'}
+            }} className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-2 sm:px-3 text-slate-200 hover:bg-slate-700 transition" title={currentLabels.signOut || 'Sign out'}>
+              <User size={15} />
+              <span className="hidden md:inline">{currentLabels.signOut || 'Sign out'}</span>
             </button>
-            <label className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-slate-200">
-              <Globe2 size={16} className="text-teal-300" />
-              <select value={language} onChange={(e) => handleLanguageChange(e.target.value as LanguageCode)} className="bg-transparent text-sm outline-none">
+            <label className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-2 py-2 text-slate-200 sm:gap-2 sm:px-3 cursor-pointer hover:border-slate-600" title="Language">
+              <Globe2 size={15} className="text-teal-300 shrink-0" />
+              <select value={language} onChange={(e) => handleLanguageChange(e.target.value as LanguageCode)} className="bg-transparent text-xs sm:text-sm outline-none max-w-[50px] sm:max-w-none cursor-pointer">
                 {supportedLanguages.map((lang) => (
                   <option key={lang.code} value={lang.code} className="bg-slate-900 text-slate-100">{lang.label}</option>
                 ))}
@@ -1593,8 +1602,8 @@ function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-6">
-        <nav className="mb-5 flex gap-2 overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/80 p-2 text-sm lg:hidden">
+      <main className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6">
+        <nav className="mb-5 flex gap-1.5 overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 text-sm lg:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {[
             ['overview', currentLabels.overview || 'Overview'],
             ['dataset', currentLabels.landCover || 'Dataset'],
@@ -1613,14 +1622,25 @@ function App() {
             ['comparison', currentLabels.opticalSar || 'Sensors'],
             ['tools', 'Tools']
           ].map(([section, label]) => (
-            <button key={section} type="button" onClick={() => goToSection(section)} className={`whitespace-nowrap rounded-lg px-3 py-2 ${activeSection === section ? 'bg-teal-500/15 text-teal-200' : 'text-slate-300 hover:bg-teal-500/10 hover:text-teal-200'}`}>{label}</button>
+            <button
+              key={section}
+              type="button"
+              onClick={() => goToSection(section)}
+              className={`whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs sm:text-sm font-medium transition ${
+                activeSection === section
+                  ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-400/40 shadow-sm'
+                  : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+              }`}
+            >
+              {label}
+            </button>
           ))}
         </nav>
-        <div hidden={activeSection !== 'overview'} id="overview" className="mb-6 grid scroll-mt-24 gap-4 md:grid-cols-4">
+        <div hidden={activeSection !== 'overview'} id="overview" className="mb-6 grid scroll-mt-24 gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4">
           {stats.map((stat) => (
-            <div key={stat.label} className="rounded-2xl border border-teal-500/20 bg-slate-900/80 p-4 shadow-glow">
-              <div className="text-slate-400 text-sm">{stat.label}</div>
-              <div className="mt-3 text-3xl font-bold text-white">{stat.value}</div>
+            <div key={stat.label} className="rounded-2xl border border-teal-500/20 bg-slate-900/80 p-3 sm:p-4 shadow-glow">
+              <div className="text-slate-400 text-xs sm:text-sm truncate">{stat.label}</div>
+              <div className="mt-2 sm:mt-3 text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
             </div>
           ))}
         </div>
@@ -2032,7 +2052,7 @@ function App() {
             </div>
 
             <div className="relative mt-4 overflow-hidden rounded-2xl border border-slate-700 bg-slate-950">
-              {primaryImage ? <img src={primaryImage} alt="Satellite viewer" className="h-[420px] w-full object-cover" /> : <div className="flex h-[420px] items-center justify-center px-6 text-center text-sm text-slate-500">Your uploaded satellite imagery will appear here with detected objects and change overlays.</div>}
+              {primaryImage ? <img src={primaryImage} alt="Satellite viewer" className="h-[280px] sm:h-[420px] w-full object-cover" /> : <div className="flex h-[280px] sm:h-[420px] items-center justify-center px-6 text-center text-sm text-slate-500">Your uploaded satellite imagery will appear here with detected objects and change overlays.</div>}
               {heatmapEnabled && (
                 <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at 50% 30%, rgba(251, 146, 60, 0.45), transparent 30%), radial-gradient(circle at 72% 61%, rgba(34, 197, 94, 0.35), transparent 25%)', opacity: heatmapOpacity }} />
               )}
@@ -2134,7 +2154,7 @@ function App() {
                 {safeLocation && <div className="mt-1 font-mono text-slate-300">{safeLocation.lat.toFixed(5)}, {safeLocation.lng.toFixed(5)}</div>}
               </div>
               {(activeSection === 'map' || activeSection === 'nearby') && (
-                <div className="h-[520px] min-h-[420px] overflow-hidden rounded-xl border border-slate-700">
+                <div className="h-[340px] sm:h-[440px] lg:h-[520px] overflow-hidden rounded-xl border border-slate-700">
                   <MapContainer center={safeLocation ? [safeLocation.lat, safeLocation.lng] : [20.5937, 78.9629]} zoom={7} scrollWheelZoom className="h-full w-full">
                     <MapRecenter location={safeLocation} />
                     <TileLayer

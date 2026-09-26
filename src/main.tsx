@@ -2,6 +2,7 @@ import { Component, StrictMode, type ErrorInfo, type ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
+import { DevicePreviewShell } from './components/DevicePreviewShell'
 
 interface ErrorBoundaryState {
   error: Error | null
@@ -36,7 +37,9 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <DevicePreviewShell>
+        <App />
+      </DevicePreviewShell>
     </ErrorBoundary>
   </StrictMode>,
 )
