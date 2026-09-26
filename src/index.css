@@ -134,15 +134,34 @@ textarea {
 .premium-shell .text-emerald-200,
 .premium-shell .text-emerald-300,
 .premium-shell .text-violet-300 {
-  color: #b48a2d !important;
+  color: #0f766e !important;
+  font-weight: 600;
+}
+
+.premium-shell .text-amber-100,
+.premium-shell .text-amber-200,
+.premium-shell .text-amber-300,
+.premium-shell .text-amber-400,
+.premium-shell .text-yellow-300,
+.premium-shell .text-yellow-400 {
+  color: #9a3412 !important;
+  font-weight: 700;
+}
+
+.premium-shell .text-amber-500,
+.premium-shell .text-amber-600,
+.premium-shell .text-amber-700,
+.premium-shell .text-amber-800 {
+  color: #9a3412 !important;
+  font-weight: 700;
 }
 
 .premium-shell .bg-teal-400,
 .premium-shell .bg-teal-500,
 .premium-shell .bg-cyan-500,
 .premium-shell .bg-sky-500 {
-  background: linear-gradient(135deg, #f4d77d, #d4af37) !important;
-  color: #1f2937 !important;
+  background: linear-gradient(135deg, #14b8a6, #0d9488) !important;
+  color: #ffffff !important;
 }
 
 .premium-shell .bg-teal-400\/5,
@@ -155,7 +174,7 @@ textarea {
 .premium-shell .bg-emerald-500\/15,
 .premium-shell .bg-emerald-500\/20,
 .premium-shell .bg-violet-500\/15 {
-  background-color: rgba(212, 175, 55, 0.1) !important;
+  background-color: rgba(20, 184, 166, 0.08) !important;
 }
 
 .premium-shell .border-teal-300,
@@ -165,18 +184,32 @@ textarea {
 .premium-shell .border-emerald-400,
 .premium-shell .ring-teal-100,
 .premium-shell .ring-violet-400 {
-  border-color: rgba(212, 175, 55, 0.32) !important;
+  border-color: rgba(13, 148, 136, 0.4) !important;
+}
+
+.premium-shell .border-amber-400\/20,
+.premium-shell .border-amber-400\/30,
+.premium-shell .border-amber-500\/40,
+.premium-shell .border-amber-500\/50 {
+  border-color: rgba(180, 83, 9, 0.45) !important;
+}
+
+.premium-shell .bg-amber-400\/5,
+.premium-shell .bg-amber-400\/10,
+.premium-shell .bg-amber-500\/20,
+.premium-shell .bg-amber-500\/25 {
+  background-color: rgba(245, 158, 11, 0.14) !important;
 }
 
 .premium-shell .hover\:border-teal-400:hover,
 .premium-shell .hover\:border-teal-500:hover {
-  border-color: rgba(196, 156, 58, 0.8) !important;
+  border-color: rgba(13, 148, 136, 0.8) !important;
 }
 
 .premium-shell .hover\:bg-teal-300:hover,
 .premium-shell .hover\:bg-teal-400:hover {
-  background: linear-gradient(135deg, #f7df88, #d4af37) !important;
-  color: #1f2937 !important;
+  background: linear-gradient(135deg, #2dd4bf, #0f766e) !important;
+  color: #ffffff !important;
 }
 
 ::-webkit-scrollbar {
