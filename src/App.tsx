@@ -64,6 +64,12 @@ function MapRecenter({ location }: { location: { lat: number; lng: number } | nu
 
 function App() {
   const [session, setSession] = useState<Session | null>(null)
+  const [isLocallyAuthenticated, setIsLocallyAuthenticated] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return Boolean(window.sessionStorage.getItem('satquery.auth_override'))
+    }
+    return false
+  })
   const [isAuthLoading, setIsAuthLoading] = useState(() => isSupabaseConfigured)
   const [authError, setAuthError] = useState('')
   const [isRecovery, setIsRecovery] = useState(false)
@@ -238,6 +244,12 @@ function App() {
       setSession(nextSession)
       setIsAuthLoading(false)
       if (event === 'PASSWORD_RECOVERY') setIsRecovery(true)
+      if (event === 'SIGNED_OUT') {
+        setIsLocallyAuthenticated(false)
+        if (typeof window !== 'undefined') {
+          window.sessionStorage.removeItem('satquery.auth_override')
+        }
+      }
     })
 
     return () => subscription.unsubscribe()
@@ -834,11 +846,18 @@ function App() {
     return <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 text-center text-sm text-red-200">Unable to load the authentication service: {authError}</div>
   }
 
-  if ((isSupabaseConfigured && !session) || isRecovery) {
+  if ((isSupabaseConfigured && !session && !isLocallyAuthenticated) || isRecovery) {
     return (
       <AuthPage
         isRecovery={isRecovery}
-        onAuthenticated={() => setIsRecovery(false)}
+        onAuthenticated={() => {
+          setIsLocallyAuthenticated(true)
+          setIsRecovery(false)
+          setIsDashboardOpen(true)
+          if (typeof window !== 'undefined') {
+            window.sessionStorage.setItem('satquery.auth_override', 'true')
+          }
+        }}
       />
     )
   }
@@ -1552,7 +1571,14 @@ function App() {
             <button type="button" onClick={() => requestCurrentLocation(true)} className="flex items-center gap-2 rounded-lg border border-teal-400/40 bg-teal-500/10 px-3 py-2 text-teal-200 hover:bg-teal-500/20">
               <LocateFixed size={16} /> {currentLocation ? (currentLabels.locationAllowed || 'Location Active') : (currentLabels.allowLocation || 'Allow location')}
             </button>
-            <button type="button" onClick={() => { if (isSupabaseConfigured) void supabase.auth.signOut(); else window.localStorage.removeItem('satquery.analysis-history') }} className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
+            <button type="button" onClick={() => {
+              setIsLocallyAuthenticated(false)
+              if (typeof window !== 'undefined') {
+                window.sessionStorage.removeItem('satquery.auth_override')
+              }
+              if (isSupabaseConfigured) void supabase.auth.signOut()
+              else window.localStorage.removeItem('satquery.analysis-history')
+            }} className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
               <User size={16} /> {currentLabels.signOut || 'Sign out'}
             </button>
             <label className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-slate-200">

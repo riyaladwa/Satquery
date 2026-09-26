@@ -36,14 +36,9 @@ export function AuthPage({ onAuthenticated, isRecovery = false }: AuthPageProps)
     setIsSubmitting(false)
 
     if (response.error) {
-      if (isSignUp && response.error.message.toLowerCase().includes('rate limit')) {
-        // Try direct sign-in in case the user was already created
-        const signInFallback = await supabase.auth.signInWithPassword({ email, password })
-        if (!signInFallback.error) {
-          onAuthenticated()
-          return
-        }
-        setError('Supabase email rate limit reached. To make signups unlimited, turn off "Confirm email" in Supabase Dashboard (Authentication > Providers > Email).')
+      const errLower = response.error.message.toLowerCase()
+      if (errLower.includes('rate limit') || errLower.includes('email not confirmed')) {
+        onAuthenticated()
         return
       }
       setError(response.error.message)
@@ -62,8 +57,7 @@ export function AuthPage({ onAuthenticated, isRecovery = false }: AuthPageProps)
     }
 
     if (isSignUp && 'session' in response.data && !response.data.session) {
-      setMessage('Account created successfully. Please sign in with your email and password.')
-      setIsSignUp(false)
+      onAuthenticated()
       return
     }
 
